@@ -17,7 +17,6 @@ is prone to errors, not scalable, and where success is overwhelmingly determined
 for experts, this process is anything but simple. There are not only many design choices and data properties that need to 
 be considered, but they are also tightly interconnected, rendering reliable manual pipeline optimization all but impossible! 
 
-![nnU-Net overview](documentation/assets/nnU-Net_overview.png)
 
 **nnU-Net is a semantic segmentation method that automatically adapts to a given dataset. It will analyze the provided 
 training cases and automatically configure a matching U-Net-based segmentation pipeline. No expertise is required on your 
