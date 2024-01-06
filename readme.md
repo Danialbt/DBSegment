@@ -7,20 +7,20 @@ segmentation tasks, deep learning has demonstrated remarkable potential across a
 segmentation difficulties. In recent months, nnU-Net, or "no-new-net," a framework directly evolved
 from U-Net design, has also seen widespread popularity.
 
-This tool generates 30 deep brain structures segmentation, as well as a brain mask from T1-Weighted MRI. The whole procedure should take ~1 min for one case. For a definition of the resulting labels refer to the paper or the provided ITK labels file labels.txt (Mehri Baniasadi et al 2022).
+This tool generates 30 deep brain structures segmentation and a brain mask from T1-Weighted MRI. The whole procedure should take ~1 min for one case. For a definition of the resulting labels refer to the paper or the provided ITK labels file labels.txt (Mehri Baniasadi et al 2022).
 
 # What is nnU-Net?
 Image datasets are enormously diverse: image dimensionality (2D, 3D), modalities/input channels (RGB image, CT, MRI, microscopy, ...), 
-image sizes, voxel sizes, class ratio, target structure properties and more change substantially between datasets. 
+image sizes, voxel sizes, class ratios, target structure properties, and more change substantially between datasets. 
 Traditionally, given a new problem, a tailored solution needs to be manually designed and optimized  - a process that 
-is prone to errors, not scalable and where success is overwhelmingly determined by the skill of the experimenter. Even 
-for experts, this process is anything but simple: there are not only many design choices and data properties that need to 
+is prone to errors, not scalable, and where success is overwhelmingly determined by the experimenter's skill. Even 
+for experts, this process is anything but simple. There are not only many design choices and data properties that need to 
 be considered, but they are also tightly interconnected, rendering reliable manual pipeline optimization all but impossible! 
 
 ![nnU-Net overview](documentation/assets/nnU-Net_overview.png)
 
 **nnU-Net is a semantic segmentation method that automatically adapts to a given dataset. It will analyze the provided 
-training cases and automatically configure a matching U-Net-based segmentation pipeline. No expertise required on your 
+training cases and automatically configure a matching U-Net-based segmentation pipeline. No expertise is required on your 
 end! You can simply train the models and use them for your application**.
 
 Upon release, nnU-Net was evaluated on 23 datasets belonging to competitions from the biomedical domain. Despite competing 
@@ -33,50 +33,8 @@ in MICCAI 2021 built their methods on top of nnU-Net,
 Please cite the [following paper](https://www.google.com/url?q=https://www.nature.com/articles/s41592-020-01008-z&sa=D&source=docs&ust=1677235958581755&usg=AOvVaw3dWL0SrITLhCJUBiNIHCQO) when using nnU-Net:
 
     Isensee, F., Jaeger, P. F., Kohl, S. A., Petersen, J., & Maier-Hein, K. H. (2021). nnU-Net: a self-configuring 
-    method for deep learning-based biomedical image segmentation. Nature methods, 18(2), 203-211.
+    method for deep learning-based biomedical image segmentation. Nature Methods, 18(2), 203-211.
 
-
-## How does nnU-Net work?
-Given a new dataset, nnU-Net will systematically analyze the provided training cases and create a 'dataset fingerprint'. 
-nnU-Net then creates several U-Net configurations for each dataset: 
-- `2d`: a 2D U-Net (for 2D and 3D datasets)
-- `3d_fullres`: a 3D U-Net that operates on a high image resolution (for 3D datasets only)
-- `3d_lowres` → `3d_cascade_fullres`: a 3D U-Net cascade where first a 3D U-Net operates on low resolution images and 
-then a second high-resolution 3D U-Net refined the predictions of the former (for 3D datasets with large image sizes only)
-
-**Note that not all U-Net configurations are created for all datasets. In datasets with small image sizes, the 
-U-Net cascade (and with it the 3d_lowres configuration) is omitted because the patch size of the full 
-resolution U-Net already covers a large part of the input images.**
-
-nnU-Net configures its segmentation pipelines based on a three-step recipe:
-- **Fixed parameters** are not adapted. During development of nnU-Net we identified a robust configuration (that is, certain architecture and training properties) that can 
-simply be used all the time. This includes, for example, nnU-Net's loss function, (most of the) data augmentation strategy and learning rate.
-- **Rule-based parameters** use the dataset fingerprint to adapt certain segmentation pipeline properties by following 
-hard-coded heuristic rules. For example, the network topology (pooling behavior and depth of the network architecture) 
-are adapted to the patch size; the patch size, network topology and batch size are optimized jointly given some GPU 
-memory constraint. 
-- **Empirical parameters** are essentially trial-and-error. For example the selection of the best U-net configuration 
-for the given dataset (2D, 3D full resolution, 3D low resolution, 3D cascade) and the optimization of the postprocessing strategy.
-
-## How to get started?
-Read these:
-- [Installation instructions](documentation/installation_instructions.md)
-- [Dataset conversion](documentation/dataset_format.md)
-- [Usage instructions](documentation/how_to_use_nnunet.md)
-
-Additional information:
-- [Region-based training](documentation/region_based_training.md)
-- [Manual data splits](documentation/manual_data_splits.md)
-- [Pretraining and finetuning](documentation/pretraining_and_finetuning.md)
-- [Intensity Normalization in nnU-Net](documentation/explanation_normalization.md)
-- [Manually editing nnU-Net configurations](documentation/explanation_plans_files.md)
-- [Extending nnU-Net](documentation/extending_nnunet.md)
-- [What is different in V2?](documentation/changelog.md)
-
-Competitions:
-- [AutoPET II](documentation/competitions/AutoPETII.md)
-
-[//]: # (- [Ignore label]&#40;documentation/ignore_label.md&#41;)
 
 ## Aim Of This Study
 
@@ -85,21 +43,21 @@ developed at Luxembourg Centre for Systems Biomedicine (LCSB) (Mehri Baniasadi e
 for brain segmentation using several MRI modalities such as T1, T1GD, and T2. Its design and
 implementation are the main objectives. The main goals are as follows:
 
-**1. Robustness: To develop a flexible and reliable DBSegment framework that can precisely
+**1. Robustness:** To develop a flexible and reliable DBSegment framework that can precisely
 segment various brain areas from MRI scans while accommodating changes in image
 quality and modality-specific features.
 
-**2. Enable multi-modal processing: The existing framework worked with an unimodal input
+**2. Enable multi-modal processing:** The existing framework worked with an unimodal input
 relying solely on T1 MRI imaging. It should be extended to allow multiple inputs of the same
 subject at the same time, for example, T1 and T2 MRI, to potentially further boost
 segmentation performance.
 
-**3. Performance analysis and improvement: To boost the DBSegment framework's
+**3. Performance analysis and improvement:** To boost the DBSegment framework's
 performance by methodical experimentation that includes adjusting hyperparameters such
 as batch size and assessing various optimization algorithms like Stochastic Gradient
 Descent (SGD), Adam, and AvaGrad.
 
-**4. Enable further application areas, in particular:
+**4. Enable further application areas, in particular:**
 *a. Neurodegenerative Disease Diagnosis: In clinical applications, brain
 segmentation is essential to help identify neurodegenerative diseases such as
 Parkinson. Utilizing a high-performance platform, we can effectively perform brain
