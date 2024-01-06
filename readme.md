@@ -58,18 +58,18 @@ as batch size and assessing various optimization algorithms like Stochastic Grad
 Descent (SGD), Adam, and AvaGrad.
 
 **4. Enable further application areas, in particular:**
-*a. Neurodegenerative Disease Diagnosis: In clinical applications, brain
+  **a. Neurodegenerative Disease Diagnosis:** In clinical applications, brain
 segmentation is essential to help identify neurodegenerative diseases such as
 Parkinson. Utilizing a high-performance platform, we can effectively perform brain
 segmentation and conduct Morphometric Analysis to facilitate early-stage diagnosis
 of neurodegenerative diseases by comparing healthy individuals with patients.
 Planning the diagnosis and treatment of several neurological disorders might
 benefit from it.
-*b. Glioma Segmentation Algorithm: To develop a specialized algorithm for the
+  **b. Glioma Segmentation Algorithm:** To develop a specialized algorithm for the
 accurate segmentation of brain Tumors, notably gliomas, from MRI data within the
 DBSegment framework. This algorithm will make use of deep learning approaches
 and cutting-edge image processing techniques.
-*c. Enabling statistical analysis: To enable thorough analysis of segmented brain
+  **c. Enabling statistical analysis:** To enable thorough analysis of segmented brain
 Tumor data, with an emphasis on figuring out how much of the brain tissue has
 been infiltrated by the Tumor. This analysis tries to measure the Tumor's geographic
 distribution and percentage coverage throughout the brain, assisting in pre-surgery
@@ -81,11 +81,3 @@ making processes. The DBSegment framework's versatility and performance
 enhancements are expected to provide a valuable resource for a wide range of
 medical applications beyond this research.
 
-# Acknowledgements
-<img src="documentation/assets/HI_Logo.png" height="100px" />
-
-<img src="documentation/assets/dkfz_logo.png" height="100px" />
-
-nnU-Net is developed and maintained by the Applied Computer Vision Lab (ACVL) of [Helmholtz Imaging](http://helmholtz-imaging.de) 
-and the [Division of Medical Image Computing](https://www.dkfz.de/en/mic/index.php) at the 
-[German Cancer Research Center (DKFZ)](https://www.dkfz.de/en/index.html).
