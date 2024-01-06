@@ -57,6 +57,7 @@ as batch size and assessing various optimization algorithms like Stochastic Grad
 Descent (SGD), Adam, and AvaGrad.
 
 **4. Enable further application areas, in particular:**
+
   **a. Neurodegenerative Disease Diagnosis:** In clinical applications, brain
 segmentation is essential to help identify neurodegenerative diseases such as
 Parkinson. Utilizing a high-performance platform, we can effectively perform brain
