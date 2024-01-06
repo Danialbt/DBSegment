@@ -97,6 +97,9 @@ its efficacy.](Results/eachlabels_1-16.png)
 ![This figure demonstrates the model's ability to precisely delineate complex structures by showing the distribution of DSC values for distinct anatomical structures. Notably, the model segmented the HN structure with 96% accuracy, demonstrating
 its efficacy.](Results/eachlabels_16-30.png)
 
+## Application of this model for the diagnosis of neurodegenerative diseases
+
+This model exhibits the potential for diagnosing certain diseases, such as Parkinson's disease.
 
 
-
+![ Comparison of Putamen Size between Candidates with and without Parkinson's Diseas](Results/eachlabels_1-16.png)
