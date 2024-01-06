@@ -102,4 +102,4 @@ its efficacy.](Results/eachlabels_16-30.png)
 This model exhibits the potential for diagnosing certain diseases, such as Parkinson's disease.
 
 
-![ Comparison of Putamen Size between Candidates with and without Parkinson's Diseas](Results/eachlabels_1-16.png)
+![ Comparison of Putamen Size between Candidates with and without Parkinson's Diseas](Results/Putamen.png)
