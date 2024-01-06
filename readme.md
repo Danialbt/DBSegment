@@ -92,7 +92,10 @@ applications.
 ![LODO cross-validation](Results/all_datasets.png)
 
 ![This figure demonstrates the model's ability to precisely delineate complex structures by showing the distribution of DSC values for distinct anatomical structures. Notably, the model segmented the HN structure with 96% accuracy, demonstrating
-its efficacy.](images/logo.png)
+its efficacy.](Results/eachlabels_1-16.png)
+
+![This figure demonstrates the model's ability to precisely delineate complex structures by showing the distribution of DSC values for distinct anatomical structures. Notably, the model segmented the HN structure with 96% accuracy, demonstrating
+its efficacy.](Results/eachlabels_16-30.png)
 
 
 
