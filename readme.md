@@ -89,7 +89,7 @@ The model's ability to achieve DCs exceeding
 90% and the consistent accuracy across various datasets is indicative of its potential for clinical
 applications.
 
-![LODO cross-validation](Results/all_datasets.png.png)
+![LODO cross-validation](Results/all_datasets.png)
 
 ![This figure demonstrates the model's ability to precisely delineate complex structures by showing the distribution of DSC values for distinct anatomical structures. Notably, the model segmented the HN structure with 96% accuracy, demonstrating
 its efficacy.](images/logo.png)
