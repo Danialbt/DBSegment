@@ -83,3 +83,16 @@ making processes. The DBSegment framework's versatility and performance
 enhancements are expected to provide a valuable resource for a wide range of
 medical applications beyond this research.
 
+## Performance of our model
+
+The model's ability to achieve DCs exceeding
+90% and the consistent accuracy across various datasets is indicative of its potential for clinical
+applications.
+![The results of LODO cross-validation are shown in this figure, which highlights accuracy levels that are greater than 90% for all datasets. Surprisingly, the OASIS3, ADNI, PPMI, and IXI datasets show a remarkable accuracy rate of 95%.](images/logo.png)
+
+![This figure demonstrates the model's ability to precisely delineate complex structures by showing the distribution of DSC values for distinct anatomical structures. Notably, the model segmented the HN structure with 96% accuracy, demonstrating
+its efficacy.](images/logo.png)
+
+
+
+
