@@ -1,5 +1,14 @@
 # Welcome to the DBSegment!
 
+One of the most significant tasks in medical imaging is image segmentation, which extracts target
+segments (such as organs, tissues, lesions, etc.) from images so that analysis is made easier. Since
+the development of U-Net, a fully automated, end-to-end neural network specifically tailored for
+segmentation tasks, deep learning has demonstrated remarkable potential across almost all online
+segmentation difficulties. In recent months, nnU-Net, or "no-new-net," a framework directly evolved
+from U-Net design, has also seen widespread popularity.
+
+This tool generates 30 deep brain structures segmentation, as well as a brain mask from T1-Weighted MRI. The whole procedure should take ~1 min for one case. For a definition of the resulting labels refer to the paper or the provided ITK labels file labels.txt (Mehri Baniasadi et al 2022).
+
 # What is nnU-Net?
 Image datasets are enormously diverse: image dimensionality (2D, 3D), modalities/input channels (RGB image, CT, MRI, microscopy, ...), 
 image sizes, voxel sizes, class ratio, target structure properties and more change substantially between datasets. 
@@ -19,41 +28,13 @@ with handcrafted solutions for each respective dataset, nnU-Net's fully automate
 open leaderboards! Since then nnU-Net has stood the test of time: it continues to be used as a baseline and method 
 development framework ([9 out of 10 challenge winners at MICCAI 2020](https://arxiv.org/abs/2101.00232) and 5 out of 7 
 in MICCAI 2021 built their methods on top of nnU-Net, 
- [we won AMOS2022 with nnU-Net](https://amos22.grand-challenge.org/final-ranking/))!
+ [It won AMOS2022 with nnU-Net](https://amos22.grand-challenge.org/final-ranking/))!
 
 Please cite the [following paper](https://www.google.com/url?q=https://www.nature.com/articles/s41592-020-01008-z&sa=D&source=docs&ust=1677235958581755&usg=AOvVaw3dWL0SrITLhCJUBiNIHCQO) when using nnU-Net:
 
     Isensee, F., Jaeger, P. F., Kohl, S. A., Petersen, J., & Maier-Hein, K. H. (2021). nnU-Net: a self-configuring 
     method for deep learning-based biomedical image segmentation. Nature methods, 18(2), 203-211.
 
-
-## What can nnU-Net do for you?
-If you are a **domain scientist** (biologist, radiologist, ...) looking to analyze your own images, nnU-Net provides 
-an out-of-the-box solution that is all but guaranteed to provide excellent results on your individual dataset. Simply 
-convert your dataset into the nnU-Net format and enjoy the power of AI - no expertise required!
-
-If you are an **AI researcher** developing segmentation methods, nnU-Net:
-- offers a fantastic out-of-the-box applicable baseline algorithm to compete against
-- can act as a method development framework to test your contribution on a large number of datasets without having to 
-tune individual pipelines (for example evaluating a new loss function)
-- provides a strong starting point for further dataset-specific optimizations. This is particularly used when competing 
-in segmentation challenges
-- provides a new perspective on the design of segmentation methods: maybe you can find better connections between 
-dataset properties and best-fitting segmentation pipelines?
-
-## What is the scope of nnU-Net?
-nnU-Net is built for semantic segmentation. It can handle 2D and 3D images with arbitrary 
-input modalities/channels. It can understand voxel spacings, anisotropies and is robust even when classes are highly
-imbalanced.
-
-nnU-Net relies on supervised learning, which means that you need to provide training cases for your application. The number of 
-required training cases varies heavily depending on the complexity of the segmentation problem. No 
-one-fits-all number can be provided here! nnU-Net does not require more training cases than other solutions - maybe 
-even less due to our extensive use of data augmentation. 
-
-nnU-Net expects to be able to process entire images at once during preprocessing and postprocessing, so it cannot 
-handle enormous images. As a reference: we tested images from 40x40x40 pixels all the way up to 1500x1500x1500 in 3D 
-and 40x40 up to ~30000x30000 in 2D! If your RAM allows it, larger is always possible.
 
 ## How does nnU-Net work?
 Given a new dataset, nnU-Net will systematically analyze the provided training cases and create a 'dataset fingerprint'. 
@@ -97,30 +78,50 @@ Competitions:
 
 [//]: # (- [Ignore label]&#40;documentation/ignore_label.md&#41;)
 
-## Where does nnU-Net perform well and where does it not perform?
-nnU-Net excels in segmentation problems that need to be solved by training from scratch, 
-for example: research applications that feature non-standard image modalities and input channels,
-challenge datasets from the biomedical domain, majority of 3D segmentation problems, etc . We have yet to find a 
-dataset for which nnU-Net's working principle fails!
+## Aim Of This Study
 
-Note: On standard segmentation 
-problems, such as 2D RGB images in ADE20k and Cityscapes, fine-tuning a foundation model (that was pretrained on a large corpus of 
-similar images, e.g. Imagenet 22k, JFT-300M) will provide better performance than nnU-Net! That is simply because these 
-models allow much better initialization. Foundation models are not supported by nnU-Net as 
-they 1) are not useful for segmentation problems that deviate from the standard setting (see above mentioned 
-datasets), 2) would typically only support 2D architectures and 3) conflict with our core design principle of carefully adapting 
-the network topology for each dataset (if the topology is changed one can no longer transfer pretrained weights!) 
+The goal of this study is to further develop and extend the DBSegment framework previously
+developed at Luxembourg Centre for Systems Biomedicine (LCSB) (Mehri Baniasadi et al 2022), a comprehensive tool
+for brain segmentation using several MRI modalities such as T1, T1GD, and T2. Its design and
+implementation are the main objectives. The main goals are as follows:
 
-## What happened to the old nnU-Net?
-The core of the old nnU-Net was hacked together in a short time period while participating in the Medical Segmentation 
-Decathlon challenge in 2018. Consequently, code structure and quality were not the best. Many features 
-were added later on and didn't quite fit into the nnU-Net design principles. Overall quite messy, really. And annoying to work with.
+**1. Robustness: To develop a flexible and reliable DBSegment framework that can precisely
+segment various brain areas from MRI scans while accommodating changes in image
+quality and modality-specific features.
 
-nnU-Net V2 is a complete overhaul. The "delete everything and start again" kind. So everything is better 
-(in the author's opinion haha). While the segmentation performance [remains the same](https://docs.google.com/spreadsheets/d/13gqjIKEMPFPyMMMwA1EML57IyoBjfC3-QCTn4zRN_Mg/edit?usp=sharing), a lot of cool stuff has been added. 
-It is now also much easier to use it as a development framework and to manually fine-tune its configuration to new 
-datasets. A big driver for the reimplementation was also the emergence of [Helmholtz Imaging](http://helmholtz-imaging.de), 
-prompting us to extend nnU-Net to more image formats and domains. Take a look [here](documentation/changelog.md) for some highlights.
+**2. Enable multi-modal processing: The existing framework worked with an unimodal input
+relying solely on T1 MRI imaging. It should be extended to allow multiple inputs of the same
+subject at the same time, for example, T1 and T2 MRI, to potentially further boost
+segmentation performance.
+
+**3. Performance analysis and improvement: To boost the DBSegment framework's
+performance by methodical experimentation that includes adjusting hyperparameters such
+as batch size and assessing various optimization algorithms like Stochastic Gradient
+Descent (SGD), Adam, and AvaGrad.
+
+**4. Enable further application areas, in particular:
+*a. Neurodegenerative Disease Diagnosis: In clinical applications, brain
+segmentation is essential to help identify neurodegenerative diseases such as
+Parkinson. Utilizing a high-performance platform, we can effectively perform brain
+segmentation and conduct Morphometric Analysis to facilitate early-stage diagnosis
+of neurodegenerative diseases by comparing healthy individuals with patients.
+Planning the diagnosis and treatment of several neurological disorders might
+benefit from it.
+*b. Glioma Segmentation Algorithm: To develop a specialized algorithm for the
+accurate segmentation of brain Tumors, notably gliomas, from MRI data within the
+DBSegment framework. This algorithm will make use of deep learning approaches
+and cutting-edge image processing techniques.
+*c. Enabling statistical analysis: To enable thorough analysis of segmented brain
+Tumor data, with an emphasis on figuring out how much of the brain tissue has
+been infiltrated by the Tumor. This analysis tries to measure the Tumor's geographic
+distribution and percentage coverage throughout the brain, assisting in pre-surgery
+planning and offering significant insights for medical professionals. By achieving
+these objectives, this study aims to contribute significantly to the field of medical
+imaging and computational neurology, offering a valuable tool for clinicians to
+enhance their understanding of brain Tumors and improve pre-surgical decision-
+making processes. The DBSegment framework's versatility and performance
+enhancements are expected to provide a valuable resource for a wide range of
+medical applications beyond this research.
 
 # Acknowledgements
 <img src="documentation/assets/HI_Logo.png" height="100px" />
