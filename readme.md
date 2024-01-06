@@ -65,10 +65,12 @@ segmentation and conduct Morphometric Analysis to facilitate early-stage diagnos
 of neurodegenerative diseases by comparing healthy individuals with patients.
 Planning the diagnosis and treatment of several neurological disorders might
 benefit from it.
+
   **b. Glioma Segmentation Algorithm:** To develop a specialized algorithm for the
 accurate segmentation of brain Tumors, notably gliomas, from MRI data within the
 DBSegment framework. This algorithm will make use of deep learning approaches
 and cutting-edge image processing techniques.
+
   **c. Enabling statistical analysis:** To enable thorough analysis of segmented brain
 Tumor data, with an emphasis on figuring out how much of the brain tissue has
 been infiltrated by the Tumor. This analysis tries to measure the Tumor's geographic
